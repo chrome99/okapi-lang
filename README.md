@@ -12,7 +12,7 @@ This project follows the structure of **[Writing an Interpreter in Go](https://i
 
 ## Lexer Demo
 
-![Lexer Demo](https://github.com/user-attachments/assets/14c8e32f-3928-4eb7-9c99-589712d8d90a)
+![lexer-demo](https://github.com/user-attachments/assets/e7a42cb4-11b3-4aa3-afe9-d933e015f391)
 
 ## Getting Started
 Clone the repo and run:
