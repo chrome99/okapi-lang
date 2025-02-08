@@ -1,16 +1,5 @@
 package token
 
-/*
-let five = 5;
-let ten = 10;
-
-let add = fn(x, y) {
-  x + y;
-};
-
-let result = add(five, ten);
-*/
-
 type TokenType string
 type Token struct {
 	Type    TokenType
@@ -27,8 +16,18 @@ const (
 	INT   = "INT"
 
 	// Operators
-	ASSIGN = "="
-	PLUS   = "+"
+	ASSIGN   = "="
+	PLUS     = "+"
+	MINUS    = "-"
+	BANG     = "!"
+	ASTERISK = "*"
+	SLASH    = "/"
+	LT       = "<"
+	GT       = ">"
+	GTE      = ">="
+	LTE      = "<="
+	EQ       = "=="
+	NOT_EQ   = "!="
 
 	// Delimiters
 	COMMA     = ","
@@ -42,15 +41,25 @@ const (
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
+	TRUE     = "TRUE"
+	FALSE    = "FALSE"
+	IF       = "IF"
+	ELSE     = "ELSE"
+	RETURN   = "RETURN"
 )
 
 var keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
 
 func LookupIdent(ident string) TokenType {
-	if tok, ok := keywords[ident]; ok {
+	if tok, isIdent := keywords[ident]; isIdent {
 		return tok
 	}
 	return IDENT
