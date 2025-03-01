@@ -1,6 +1,7 @@
 package token
 
-type TokenType string
+type TokenType int
+
 type Token struct {
 	Type    TokenType
 	Literal string
@@ -8,45 +9,86 @@ type Token struct {
 
 const (
 	// Special tokens
-	ILLEGAL = "ILLEGAL"
-	EOF     = "EOF"
+	ILLEGAL TokenType = iota
+	EOF
 
 	// Identifiers + literals
-	IDENT = "IDENT"
-	INT   = "INT"
+	IDENT
+	INT
 
 	// Operators
-	ASSIGN   = "="
-	PLUS     = "+"
-	MINUS    = "-"
-	BANG     = "!"
-	ASTERISK = "*"
-	SLASH    = "/"
-	LT       = "<"
-	GT       = ">"
-	GTE      = ">="
-	LTE      = "<="
-	EQ       = "=="
-	NOT_EQ   = "!="
+	ASSIGN
+	PLUS
+	MINUS
+	BANG
+	ASTERISK
+	SLASH
+	LT
+	GT
+	GTE
+	LTE
+	EQ
+	NOT_EQ
 
 	// Delimiters
-	COMMA     = ","
-	SEMICOLON = ";"
+	COMMA
+	SEMICOLON
 
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN
+	RPAREN
+	LBRACE
+	RBRACE
 
 	// Keywords
-	FUNCTION = "FUNCTION"
-	LET      = "LET"
-	TRUE     = "TRUE"
-	FALSE    = "FALSE"
-	IF       = "IF"
-	ELSE     = "ELSE"
-	RETURN   = "RETURN"
+	FUNCTION
+	LET
+	TRUE
+	FALSE
+	IF
+	ELSE
+	RETURN
 )
+
+// TokenType to string mapping
+var tokenStrings = map[TokenType]string{
+	ILLEGAL:   "ILLEGAL",
+	EOF:       "EOF",
+	IDENT:     "IDENT",
+	INT:       "INT",
+	ASSIGN:    "=",
+	PLUS:      "+",
+	MINUS:     "-",
+	BANG:      "!",
+	ASTERISK:  "*",
+	SLASH:     "/",
+	LT:        "<",
+	GT:        ">",
+	GTE:       ">=",
+	LTE:       "<=",
+	EQ:        "==",
+	NOT_EQ:    "!=",
+	COMMA:     ",",
+	SEMICOLON: ";",
+	LPAREN:    "(",
+	RPAREN:    ")",
+	LBRACE:    "{",
+	RBRACE:    "}",
+	FUNCTION:  "FUNCTION",
+	LET:       "LET",
+	TRUE:      "TRUE",
+	FALSE:     "FALSE",
+	IF:        "IF",
+	ELSE:      "ELSE",
+	RETURN:    "RETURN",
+}
+
+// Convert TokenType to string
+func (t TokenType) String() string {
+	if str, ok := tokenStrings[t]; ok {
+		return str
+	}
+	return "UNKNOWN"
+}
 
 var keywords = map[string]TokenType{
 	"fn":     FUNCTION,
